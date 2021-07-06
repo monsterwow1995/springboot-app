@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3 px-5" th:fragment="header">
+    <a class="navbar-brand" href="#">ZdravoSvete.RS</a>
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/index}">Pocetna</a>
+            </li>
+            <li class="nav-item" th:if="${session.role eq null}">
+                <a class="nav-link" th:href="@{/register/menu}">Registracija</a>
+            </li>
+            <li class="nav-item" th:if="${session.role eq null}">
+                <a class="nav-link" th:href="@{/login/menu}">Prijava</a>
+            </li>
+            <li class="nav-item dropdown" th:if="${session.role eq 'POSLODAVAC'}">
+                <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="navbarDropdown"
+                   role="button">
+                    Nalog
+                </a>
+                <ul aria-labelledby="navbarDropdown" class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/profile/poslodavac}" th:if="${session.role eq 'POSLODAVAC'}">Detalji</a></li>
+                    <li><a class="dropdown-item" th:href="@{/profile/poslodavac/posao}" th:if="${session.role eq 'POSLODAVAC'}">Poslovi</a></li>
+                </ul>
+            </li>
+            <li class="nav-item" th:if="${session.role eq 'RADNIK'}">
+                <a class="nav-link" th:href="@{/pretraga/meni}" th:text="${'Pretraga'}"></a>
+            </li>
+            <li class="nav-item" th:if="${session.role eq 'POSLODAVAC' or session.role eq 'RADNIK'}">
+                <a class="nav-link" th:href="@{/login/logout}" th:text="${'Odjava'}"></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

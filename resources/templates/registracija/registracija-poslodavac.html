@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script crossorigin="anonymous"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div th:replace="fragment/header :: header">
+</div>
+<div class="d-flex flex-column" id="content">
+    <h1 class="m-5 mb-2 text-center">
+        Unos podataka
+    </h1>
+    <div>
+        <form id="form" style="width: 25%" class="m-3 mx-auto border rounded-1 p-3" th:object="${poslodavac}" method="post" th:action="@{/register/poslodavac}">
+            <div class="mb-3 ">
+                <label class="form-label">Naziv kompanije</label>
+                <input aria-describedby="emailHelp" class="form-control"  type="text" th:field="*{naziv}">
+                <div class="form-text" th:if="${#fields.hasErrors('naziv')}" th:classappend="text-danger" th:errors="*{naziv}"></div>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Opis kompanije</label>
+                <textarea class="form-control" rows="3" th:field="*{opis}">
+
+                </textarea>
+                <div class="form-text" th:if="${#fields.hasErrors('opis')}" th:classappend="text-danger" th:errors="*{opis}"></div>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Email</label>
+                <input aria-describedby="emailHelp" class="form-control"  type="email" placeholder="name@example.com" th:field="*{email}">
+                <div class="form-text" th:if="${#fields.hasErrors('email')}" th:classappend="text-danger" th:errors="*{email}"></div>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Adresa</label>
+                <input class="form-control"  type="text" th:field="*{adresa}">
+                <div class="form-text" th:if="${#fields.hasErrors('adresa')}" th:classappend="text-danger" th:errors="*{adresa}"></div>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">Telefon</label>
+                <input class="form-control" type="tel" th:field="*{telefon}">
+                <div class="form-text" th:if="${#fields.hasErrors('telefon')}" th:classappend="text-danger" th:errors="*{telefon}"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" th:field="*{password}">
+                <div class="form-text" th:if="${#fields.hasErrors('password')}" th:classappend="text-danger" th:errors="*{password}"></div>
+
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
